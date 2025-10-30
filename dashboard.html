@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/logo-ut.png">
+    <link rel="shortcut icon" href="assets/favicon.ico">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- <nav class="sidebar">
+            <img src="assets/logo-ut.png" alt="Logo UT" class="sidebar-logo">
+            <div class="sidebar-title">SITTA UT</div>
+            <div class="sidebar-menu">
+                <div class="sidebar-menu-item active" onclick="navigateTo('dashboard.html')">
+                    <span class="sidebar-menu-icon">
+                        <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 8h2v-2H7v2zm0-4h2v-2H7v2zm0-8v2h2V5H7zm4 8h2v-2h-2v2zm0 4h2v-2h-2v2zm0-8h2V7h-2v2zm4 8h2v-2h-2v2zm0-4h2v-2h-2v2zm0-8v2h2V5h-2z" fill="#fbbf24"/></svg>
+                    </span>
+                    Dashboard
+                </div>
+                <div class="sidebar-menu-item" onclick="navigateTo('stok.html')">
+                    <span class="sidebar-menu-icon">
+                        <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><path d="M4 6v12a2 2 0 002 2h12a2 2 0 002-2V6" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="4" y="6" width="16" height="4" fill="#2563eb"/><rect x="4" y="10" width="16" height="8" fill="#fbbf24"/></svg>
+                    </span>
+                    Stok Bahan Ajar
+                </div>
+                <div class="sidebar-menu-item" onclick="navigateTo('tracking.html')">
+                    <span class="sidebar-menu-icon">
+                        <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2" fill="#2563eb"/><path d="M3 7l9 6 9-6" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </span>
+                    Tracking
+                </div>
+                <div class="sidebar-menu-item" onclick="showLaporanMenu()">
+                    <span class="sidebar-menu-icon">
+                        <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4" fill="#fbbf24"/><path d="M8 16V8m4 8V12m4 4V10" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/></svg>
+                    </span>
+                    Laporan
+                </div>
+                <div class="sidebar-menu-item" onclick="navigateTo('histori.html')">
+                    <span class="sidebar-menu-icon">
+                        <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4" fill="#2563eb"/><path d="M8 8h8v8H8V8z" fill="#fbbf24"/></svg>
+                    </span>
+                    Histori
+                </div>
+            </div>
+        </nav> -->
+        <div class="main-content">
+            <div class="header-main">
+                <div class="header-main-title">Dashboard SITTA</div>
+                <div class="header-user">
+                    <span id="userName">User</span>
+                    <button class="header-logout-btn" onclick="showLogoutConfirmation()">Logout</button>
+                </div>
+            </div>
+            <div class="greeting-card">
+                <div class="greeting-icon">🌞</div>
+                <div>
+                    <h2 id="greetingText"></h2>
+                    <p id="currentTime"></p>
+                </div>
+            </div>
+            <div class="menu-card-grid">
+                <div class="menu-card-new" onclick="navigateTo('stok.html')">
+                    <div class="menu-card-icon">📦</div>
+                    <div class="menu-card-text">
+                        <h3>Informasi Bahan Ajar</h3>
+                        <p>Lihat dan kelola stok bahan ajar</p>
+                    </div>
+                </div>
+                <div class="menu-card-new" onclick="navigateTo('tracking.html')">
+                    <div class="menu-card-icon">🚚</div>
+                    <div class="menu-card-text">
+                        <h3>Tracking Pengiriman</h3>
+                        <p>Lacak status pengiriman bahan ajar</p>
+                    </div>
+                </div>
+                <div class="menu-card-new" onclick="showLaporanMenu()">
+                    <div class="menu-card-icon">📊</div>
+                    <div class="menu-card-text">
+                        <h3>Laporan</h3>
+                        <p>Monitoring dan rekap bahan ajar</p>
+                    </div>
+                </div>
+                <div class="menu-card-new" onclick="navigateTo('histori.html')">
+                    <div class="menu-card-icon">📝</div>
+                    <div class="menu-card-text">
+                        <h3>Histori Transaksi</h3>
+                        <p>Riwayat transaksi bahan ajar</p>
+                    </div>
+                </div>
+            </div>
+            <footer class="app-footer">
+                <p>Pemograman Berbasis Web - Tugas 1 - | <a href="https://github.com/YanisariGazi" target="_blank">Tsabit Djatmiko</a> | 052193588</p>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Modal Laporan -->
+    <div id="laporanModal" class="modal">
+        <div class="modal-content greeting-card" style="flex-direction: column; align-items: flex-start; gap: 18px; min-width: 340px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+                <h2 style="color: var(--primary-dark); font-size: 1.3em; font-weight: 700; margin: 0;">📊 Menu Laporan</h2>
+                <span class="close" onclick="closeLaporanMenu()" style="font-size: 2em; color: var(--muted); cursor: pointer; margin-left: auto;">&times;</span>
+            </div>
+            <div class="laporan-menu" style="display: grid; grid-template-columns: 1fr; gap: 16px; width: 100%;">
+                <div class="laporan-item menu-card-new" onclick="navigateTo('monitoring-progress.html')" style="padding: 18px 16px;">
+                    <div class="menu-card-icon">📈</div>
+                    <div class="menu-card-text">
+                        <h3 style="margin-bottom: 4px;">Monitoring Progress DO Bahan Ajar</h3>
+                        <p style="margin: 0;">Pantau progress delivery order</p>
+                    </div>
+                </div>
+                <div class="laporan-item menu-card-new" onclick="navigateTo('rekap-bahan-ajar.html')" style="padding: 18px 16px;">
+                    <div class="menu-card-icon">📑</div>
+                    <div class="menu-card-text">
+                        <h3 style="margin-bottom: 4px;">Rekap Bahan Ajar</h3>
+                        <p style="margin: 0;">Rekapitulasi data bahan ajar</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Logout Confirmation -->
+    <div id="logoutModal" class="modal">
+        <div class="modal-content greeting-card confirmation-modal" style="flex-direction: column; align-items: center; gap: 18px; min-width: 340px;">
+            <div class="confirmation-icon" style="font-size: 2.5em; color: #fbbf24;">⚠️</div>
+            <h2 style="color: var(--primary-dark); font-size: 1.2em; font-weight: 700; margin: 0;">Konfirmasi Logout</h2>
+            <p style="color: var(--muted); margin: 0;">Apakah Anda yakin ingin keluar dari sistem?</p>
+            <div class="confirmation-buttons" style="display: flex; gap: 12px; margin-top: 12px;">
+                <button onclick="confirmLogout()" class="header-logout-btn btn-confirm-yes">Ya, Logout</button>
+                <button onclick="closeLogoutConfirmation()" class="header-logout-btn btn-confirm-no" style="background: #64748b; color: #fff;">Batal</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+        // Check if user is logged in
+        window.onload = function() {
+            const currentUser = sessionStorage.getItem('currentUser');
+            if (!currentUser) {
+                window.location.href = 'index.html';
+                return;
+            }
+            const user = JSON.parse(currentUser);
+            document.getElementById('userName').textContent = user.nama;
+            setGreeting();
+            updateTime();
+            setInterval(updateTime, 1000);
+        };
+        function setGreeting() {
+            const hour = new Date().getHours();
+            let greeting = '';
+            if (hour >= 5 && hour < 11) {
+                greeting = 'Selamat Pagi';
+            } else if (hour >= 11 && hour < 15) {
+                greeting = 'Selamat Siang';
+            } else if (hour >= 15 && hour < 18) {
+                greeting = 'Selamat Sore';
+            } else {
+                greeting = 'Selamat Malam';
+            }
+            const user = JSON.parse(sessionStorage.getItem('currentUser'));
+            document.getElementById('greetingText').textContent = `${greeting}, ${user.nama}!`;
+        }
+        function updateTime() {
+            const now = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+            document.getElementById('currentTime').textContent = now.toLocaleDateString('id-ID', options);
+        }
+        function navigateTo(page) { window.location.href = page; }
+        function showLaporanMenu() { document.getElementById('laporanModal').style.display = 'block'; }
+        function closeLaporanMenu() { document.getElementById('laporanModal').style.display = 'none'; }
+        function showLogoutConfirmation() { document.getElementById('logoutModal').style.display = 'block'; }
+        function closeLogoutConfirmation() { document.getElementById('logoutModal').style.display = 'none'; }
+        function confirmLogout() { sessionStorage.removeItem('currentUser'); window.location.href = 'index.html'; }
+        window.onclick = function(event) {
+            const laporanModal = document.getElementById('laporanModal');
+            const logoutModal = document.getElementById('logoutModal');
+            if (event.target == laporanModal) { laporanModal.style.display = 'none'; }
+            if (event.target == logoutModal) { logoutModal.style.display = 'none'; }
+        };
+    </script>
+</body>
+</html>

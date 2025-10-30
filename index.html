@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SITTA - Login</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/logo-ut.png">
+    <link rel="shortcut icon" href="assets/favicon.ico">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="login-page">
+    <div class="login-container">
+        <div class="login-box greeting-card">
+            <div class="login-header">
+                <img src="assets/logo-ut.png" alt="Logo UT" class="logo-login">
+                <div class="login-title">
+                    <h1>SITTA - UT</h1>
+                    <div class="login-subtitle">
+                        <p>Sistem Informasi Tracking &</p>
+                        <p>Transaksi Bahan Ajar</p>
+                        <p class="subtitle">UNIVERSITAS TERBUKA</p>
+                    </div>
+                </div>
+            </div>
+            
+            <form id="loginForm" onsubmit="return handleLogin(event)" class="login-form">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Masukkan email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Masukkan password" required>
+                </div>
+                
+                <button type="submit" class="header-logout-btn login-btn">Login</button>
+            </form>
+            
+            <div class="login-footer">
+                <a href="#" onclick="showLupaPassword()">Lupa Password?</a>
+                <span>|</span>
+                <a href="#" onclick="showDaftar()">Daftar</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Lupa Password -->
+    <div id="lupaPasswordModal" class="modal">
+        <div class="modal-content greeting-card">
+            <div class="modal-header">
+                <h2 class="modal-title">🔑 Lupa Password</h2>
+                <span class="modal-close" onclick="closeLupaPassword()">&times;</span>
+            </div>
+            <form id="lupaPasswordForm" class="login-form">
+                <div class="form-group">
+                    <label for="emailReset">Email</label>
+                    <input type="email" id="emailReset" placeholder="Masukkan email terdaftar" required>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="header-logout-btn">Kirim Link Reset</button>
+                    <button type="button" onclick="closeLupaPassword()" class="header-logout-btn btn-confirm-no">Batal</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Daftar -->
+    <div id="daftarModal" class="modal">
+        <div class="modal-content greeting-card">
+            <div class="modal-header">
+                <h2 class="modal-title">📝 Daftar Akun Baru</h2>
+                <span class="modal-close" onclick="closeDaftar()">&times;</span>
+            </div>
+            <form id="daftarForm" class="login-form">
+                <div class="form-group">
+                    <label for="namaDaftar">Nama Lengkap</label>
+                    <input type="text" id="namaDaftar" placeholder="Masukkan nama lengkap" required>
+                </div>
+                <div class="form-group">
+                    <label for="emailDaftar">Email</label>
+                    <input type="email" id="emailDaftar" placeholder="Masukkan email" required>
+                </div>
+                <div class="form-group">
+                    <label for="passwordDaftar">Password</label>
+                    <input type="password" id="passwordDaftar" placeholder="Masukkan password" required>
+                </div>
+                <div class="form-group">
+                    <label for="lokasiDaftar">Lokasi</label>
+                    <input type="text" id="lokasiDaftar" placeholder="Masukkan lokasi UPBJJ" required>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="header-logout-btn">Daftar</button>
+                    <button type="button" onclick="closeDaftar()" class="header-logout-btn btn-confirm-no">Batal</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

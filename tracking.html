@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SITTA - Tracking Pengiriman</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/logo-ut.png">
+    <link rel="shortcut icon" href="assets/favicon.ico">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- <nav class="sidebar">
+            <img src="assets/logo-ut.png" alt="Logo UT" class="sidebar-logo">
+            <div class="sidebar-title">SITTA UT</div>
+            <div class="sidebar-menu">
+                <div class="sidebar-menu-item" onclick="navigateTo('dashboard.html')">
+                    <span class="sidebar-menu-icon">
+                        <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 8h2v-2H7v2zm0-4h2v-2H7v2zm0-8v2h2V5H7zm4 8h2v-2h-2v2zm0 4h2v-2h-2v2zm0-8h2V7h-2v2zm4 8h2v-2h-2v2zm0-4h2v-2h-2v2zm0-8v2h2V5h-2z" fill="#fbbf24"/></svg>
+                    </span>
+                    Dashboard
+                </div>
+                <div class="sidebar-menu-item" onclick="navigateTo('stok.html')">
+                    <span class="sidebar-menu-icon">
+                        <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><path d="M4 6v12a2 2 0 002 2h12a2 2 0 002-2V6" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="4" y="6" width="16" height="4" fill="#2563eb"/><rect x="4" y="10" width="16" height="8" fill="#fbbf24"/></svg>
+                    </span>
+                    Stok Bahan Ajar
+                </div>
+                <div class="sidebar-menu-item active" onclick="navigateTo('tracking.html')">
+                    <span class="sidebar-menu-icon">
+                        <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2" fill="#2563eb"/><path d="M3 7l9 6 9-6" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </span>
+                    Tracking
+                </div>
+                <div class="sidebar-menu-item" onclick="showLaporanMenu()">
+                    <span class="sidebar-menu-icon">
+                        <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4" fill="#fbbf24"/><path d="M8 16V8m4 8V12m4 4V10" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/></svg>
+                    </span>
+                    Laporan
+                </div>
+                <div class="sidebar-menu-item" onclick="navigateTo('histori.html')">
+                    <span class="sidebar-menu-icon">
+                        <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4" fill="#2563eb"/><path d="M8 8h8v8H8V8z" fill="#fbbf24"/></svg>
+                    </span>
+                    Histori
+                </div>
+            </div>
+        </nav> -->
+        <div class="main-content">
+            <div class="header-main">
+                <div class="header-main-title">Tracking Pengiriman</div>
+                <div class="header-user">
+                    <span id="userName">User</span>
+                    <button class="header-logout-btn" onclick="showLogoutConfirmation()">Logout</button>
+                </div>
+            </div>
+            <div class="greeting-card" style="margin-bottom: 24px; align-items: center; justify-content: space-between;">
+                <h3 style="color: var(--primary-dark); margin-bottom: 0;">Cari Nomor Delivery Order</h3>
+                <button onclick="goBack()" class="header-logout-btn" style="margin-left: auto;">← Kembali ke Dashboard</button>
+            </div>
+            <div class="tracking-search" style="background: var(--card-bg); box-shadow: var(--card-shadow); border-radius: 18px; padding: 32px 28px; margin-bottom: 24px;">
+                <form id="trackingForm" onsubmit="return searchTracking(event)">
+                    <div style="display: flex; gap: 18px; align-items: center;">
+                        <input type="text" id="nomorDO" placeholder="Masukkan Nomor DO" required style="flex:1; padding: 12px; border-radius: 8px; border: 1px solid #cbd5e1; font-size: 1.1em;">
+                        <button type="submit" class="header-logout-btn">Cari</button>
+                    </div>
+                </form>
+            </div>
+            <div id="trackingResult" class="greeting-card" style="display: none; flex-direction: column; gap: 18px; margin-bottom: 24px;">
+                <div class="result-header" style="font-weight: 700; color: var(--primary-dark); font-size: 1.2em;">Informasi Pengiriman</div>
+                <div class="result-info" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                    <div><strong>Nomor DO:</strong> <span id="resultNomorDO"></span></div>
+                    <div><strong>Nama Penerima:</strong> <span id="resultNama"></span></div>
+                    <div><strong>Status:</strong> <span id="resultStatus"></span></div>
+                    <div><strong>Ekspedisi:</strong> <span id="resultEkspedisi"></span></div>
+                    <div><strong>Tanggal Kirim:</strong> <span id="resultTanggal"></span></div>
+                    <div><strong>Paket:</strong> <span id="resultPaket"></span></div>
+                    <div><strong>Total:</strong> <span id="resultTotal"></span></div>
+                </div>
+                <div class="tracking-timeline" style="margin-top: 18px;">
+                    <h3 style="color: var(--primary-dark); font-size: 1.1em;">Riwayat Perjalanan</h3>
+                    <div id="timelineContainer" class="timeline"></div>
+                </div>
+            </div>
+            <div id="notFoundMessage" class="greeting-card" style="display: none; background: #fee2e2; color: #b91c1c; margin-bottom: 24px;">
+                <p>❌ Nomor DO tidak ditemukan. Silakan periksa kembali nomor DO Anda.</p>
+            </div>
+            <footer class="app-footer">
+                <p>Pemograman Berbasis Web - Tugas 1 - | <a href="https://github.com/YanisariGazi" target="_blank">Tsabit Djatmiko</a> | 052193588</p>
+            </footer>
+        </div>
+    </div>
+    <!-- Modal Logout Confirmation -->
+    <div id="logoutModal" class="modal">
+        <div class="modal-content confirmation-modal">
+            <div class="confirmation-icon">⚠️</div>
+            <h2>Konfirmasi Logout</h2>
+            <p>Apakah Anda yakin ingin keluar dari sistem?</p>
+            <div class="confirmation-buttons">
+                <button onclick="confirmLogout()" class="btn-confirm-yes">Ya, Logout</button>
+                <button onclick="closeLogoutConfirmation()" class="btn-confirm-no">Batal</button>
+            </div>
+        </div>
+    </div>
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+        // Check if user is logged in
+        window.onload = function() {
+            const currentUser = sessionStorage.getItem('currentUser');
+            if (!currentUser) {
+                window.location.href = 'index.html';
+                return;
+            }
+            const user = JSON.parse(currentUser);
+            document.getElementById('userName').textContent = user.nama;
+        };
+        function searchTracking(event) {
+            event.preventDefault();
+            const nomorDO = document.getElementById('nomorDO').value.trim();
+            const trackingData = dataTracking[nomorDO];
+            document.getElementById('trackingResult').style.display = 'none';
+            document.getElementById('notFoundMessage').style.display = 'none';
+            if (trackingData) {
+                document.getElementById('resultNomorDO').textContent = trackingData.nomorDO;
+                document.getElementById('resultNama').textContent = trackingData.nama;
+                document.getElementById('resultStatus').textContent = trackingData.status;
+                document.getElementById('resultEkspedisi').textContent = trackingData.ekspedisi;
+                document.getElementById('resultTanggal').textContent = formatDate(trackingData.tanggalKirim);
+                document.getElementById('resultPaket').textContent = trackingData.paket;
+                document.getElementById('resultTotal').textContent = trackingData.total;
+                const statusBadge = document.getElementById('resultStatus');
+                if (trackingData.status === 'Dikirim') {
+                    statusBadge.className = 'info-value status-badge status-delivered';
+                } else {
+                    statusBadge.className = 'info-value status-badge status-in-transit';
+                }
+                displayTimeline(trackingData.perjalanan);
+                document.getElementById('trackingResult').style.display = 'flex';
+            } else {
+                document.getElementById('notFoundMessage').style.display = 'block';
+            }
+        }
+        function displayTimeline(perjalanan) {
+            const timelineContainer = document.getElementById('timelineContainer');
+            timelineContainer.innerHTML = '';
+            perjalanan.forEach((item, index) => {
+                const timelineItem = document.createElement('div');
+                timelineItem.className = 'timeline-item';
+                timelineItem.style = 'padding: 8px 0; border-left: 3px solid var(--primary); margin-left: 8px; position: relative;';
+                timelineItem.innerHTML = `<div style='margin-left: 16px;'><strong>${item.waktu}</strong> - ${item.keterangan}</div>`;
+                timelineContainer.appendChild(timelineItem);
+            });
+        }
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return date.toLocaleDateString('id-ID', options);
+        }
+        function goBack() { window.location.href = 'dashboard.html'; }
+        function navigateTo(page) { window.location.href = page; }
+        function showLogoutConfirmation() { document.getElementById('logoutModal').style.display = 'block'; }
+        function closeLogoutConfirmation() { document.getElementById('logoutModal').style.display = 'none'; }
+        function confirmLogout() { sessionStorage.removeItem('currentUser'); window.location.href = 'index.html'; }
+        window.onclick = function(event) {
+            const logoutModal = document.getElementById('logoutModal');
+            if (event.target == logoutModal) { logoutModal.style.display = 'none'; }
+        };
+    </script>
+</body>
+</html>
